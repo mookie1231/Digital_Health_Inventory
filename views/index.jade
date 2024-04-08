@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Digital Health Tools Inventory
+  form(action="/" method="get")
+    input(type="text" placeholder="Search digital health tools..." name="search" value=searchQuery)
+    button(type="submit") Search
+  ul
+    each tool in tools
+      li= tool.name + ' - ' + tool.description
