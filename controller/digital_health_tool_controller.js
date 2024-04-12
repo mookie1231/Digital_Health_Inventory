@@ -14,10 +14,17 @@ exports.digital_health_main_page = asyncHandler(async (req, res, next) => {
 });
 
 exports.add_new_tool_get = asyncHandler( async (req, res, next) => {
-    res.render('add-tool')
+    res.render('add_tool')
 })
 
 exports.add_new_tool_post = asyncHandler( async (req,res,next) => {
-    res.send("Page is being worked on by Mookie")
+    try {
+        const { name, description } = req.body;
+        const newTool = new Tool({ name, description });
+        await newTool.save();
+        res.redirect('/');
+      } catch (err) {
+        res.status(500).send("Error saving new tool.");
+      }
 })
 

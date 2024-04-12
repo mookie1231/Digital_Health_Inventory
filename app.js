@@ -29,6 +29,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -39,5 +41,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const mongoDB = "mongodb+srv://mukeshloganathan12:VrCeH4QQMfOTCzQG@digitalhealthinventory.h4okhve.mongodb.net/?retryWrites=true&w=majority&appName=digitalhealthinventory";
+
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
 
 module.exports = app;
