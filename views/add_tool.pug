@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div(class="container")
+    h1 Add New Digital Health Tool
+    form(action="/add-tool" method="post")
+      div(class="mb-3")
+        label(for="name" class="form-label") Name
+        input(type="text" class="form-control" id="name" name="name" required)
+      div(class="mb-3")
+        label(for="description" class="form-label") Description
+        textarea(class="form-control" id="description" name="description" rows="3" required)
+      button(type="submit" class="btn btn-primary") Submit

@@ -12,3 +12,12 @@ exports.digital_health_main_page = asyncHandler(async (req, res, next) => {
     digitalHealthTools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())) : digitalHealthTools;
     res.render('index', { tools: filteredTools, searchQuery: query || '' });
 });
+
+exports.add_new_tool_get = asyncHandler( async (req, res, next) => {
+    res.render('add-tool')
+})
+
+exports.add_new_tool_post = asyncHandler( async (req,res,next) => {
+    res.send("Page is being worked on by Mookie")
+})
+
