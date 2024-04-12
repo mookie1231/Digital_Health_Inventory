@@ -1,21 +1,42 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 body {
-  font-family: 'Arial', sans-serif;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Viewport height */
+}
+
+.main-content {
+  flex: 1; /* This will allow the content to expand and fill the available space */
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #f8f9fa;
-  line-height: 60px; /* Vertically center the text there */
+  background-color: #343a40; /* Darker shade for footer */
+  color: #fff;
+  padding: 20px 0;
   text-align: center;
+  width: 100%; /* Ensure it fills the width */
+}
+
+.footer a {
+  color: #d1d1d1; /* Light grey color for links */
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  color: #f8f9fa; /* Slightly brighter grey on hover */
 }
 
 /* Additional custom styles */
 .navbar .navbar-brand {
   font-weight: bold;
   color: #fff !important;
+  margin-left: 20px;
 }
 
 .list-group-item {
