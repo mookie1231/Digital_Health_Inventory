@@ -1,23 +1,32 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  margin-top: 20px;
 }
 
-input[type="text"] {
-  margin: 20px 0;
-  padding: 10px;
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  line-height: 60px; /* Vertically center the text there */
+  text-align: center;
 }
 
-button {
-  padding: 10px;
+/* Additional custom styles */
+.navbar .navbar-brand {
+  font-weight: bold;
+  color: #fff !important;
 }
 
-ul {
-  list-style-type: none;
+.list-group-item {
+  transition: transform 0.3s;
 }
 
-li {
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #f0f0f0;
+.list-group-item:hover {
+  transform: scale(1.05);
+}
+
+.container {
+  padding-top: 20px;
 }
 
