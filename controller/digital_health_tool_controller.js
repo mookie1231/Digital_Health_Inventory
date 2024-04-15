@@ -30,16 +30,12 @@ exports.add_new_tool_post = [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("First name must be specified.")
-    .isAlphanumeric()
-    .withMessage("First name has non-alphanumeric characters."),
+    .withMessage("First name must be specified."),
   body("description")
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Family name must be specified.")
-    .isAlphanumeric()
-    .withMessage("Family name has non-alphanumeric characters."),
+    .withMessage("Family name must be specified."),
   
   // Process request after validation and sanitization.
   asyncHandler(async (req, res, next) => {
@@ -63,7 +59,7 @@ exports.add_new_tool_post = [
       // Save author.
       await company.save();
       // Redirect to new author record.
-      res.redirect("/add-tool")
+      res.render("testing")
     }
   }),
 ];
