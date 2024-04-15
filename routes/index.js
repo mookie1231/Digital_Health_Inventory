@@ -10,5 +10,7 @@ router.get('/add-tool', digital_health_tool.add_new_tool_get);
 
 router.post('/add-tool', digital_health_tool.add_new_tool_post);
 
+router.get('/error-page', )
+
 
 module.exports = router;

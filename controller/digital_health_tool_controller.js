@@ -1,6 +1,8 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const router = express.Router();
+const Company = require("../models/companies")
+const {body, validationResult} = require('express-validator');
 
 const digitalHealthTools = [
     {id: 1, name: 'Linus', description: 'Cognitive assessment based on digitized clock drawing test'},
@@ -11,24 +13,58 @@ const digitalHealthTools = [
   ];
 
 exports.digital_health_main_page = asyncHandler(async (req, res, next) => {
-   const query = req.query.search;
-    const filteredTools = query ?
-    digitalHealthTools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())) : digitalHealthTools;
-    res.render('index', { tools: filteredTools, searchQuery: query || '' });
+  const allCompanies = await Company.find({}, "name description")
+  .sort({ name: 1 })
+  .exec();
+
+  res.render("index", { title: "Mookies Book List", company_list: allCompanies });
 });
 
 exports.add_new_tool_get = asyncHandler( async (req, res, next) => {
     res.render('add_tool')
 })
 
-exports.add_new_tool_post = asyncHandler( async (req,res,next) => {
-    try {
-        const { name, description } = req.body;
-        const newTool = new Tool({ name, description });
-        await newTool.save();
-        res.redirect('/');
-      } catch (err) {
-        res.status(500).send("Error saving new tool.");
-      }
-})
+exports.add_new_tool_post = [
+  // Validate and sanitize fields.
+  body("name")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("First name must be specified.")
+    .isAlphanumeric()
+    .withMessage("First name has non-alphanumeric characters."),
+  body("description")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Family name must be specified.")
+    .isAlphanumeric()
+    .withMessage("Family name has non-alphanumeric characters."),
+  
+  // Process request after validation and sanitization.
+  asyncHandler(async (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create Author object with escaped and trimmed data
+    const company = new Company({
+      name: req.body.name,
+      description: req.body.description,
+    });
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/errors messages.
+      res.render("error_page");
+      return;
+
+    } else {
+      // Data from form is valid.
+
+      // Save author.
+      await company.save();
+      // Redirect to new author record.
+      res.redirect("/add-tool")
+    }
+  }),
+];
 
