@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= company.name
+  body
+    h1= company.name
+
+    p #{company.description}
+
+    p
+    a(href=company.url+'/delete') Delete Book
+    p
+    a(href=company.url+'/update') Update Book

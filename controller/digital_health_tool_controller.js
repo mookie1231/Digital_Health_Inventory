@@ -59,8 +59,27 @@ exports.add_new_tool_post = [
       // Save author.
       await company.save();
       // Redirect to new author record.
-      res.render("testing")
+      res.redirect("/")
+      
     }
   }),
 ];
+
+
+exports.company_instance_id = asyncHandler(async (req,res,next) => {
+    const companyinfo = await Company.findById(req.params.id)
+      .exec();
+  
+    if (companyinfo === null) {
+      // No results.
+      const err = new Error("Book copy not found");
+      err.status = 404;
+      return next(err);
+    }
+  
+    res.render("companyinstance", {
+      company: companyinfo,
+    });
+})
+
 

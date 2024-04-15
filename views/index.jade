@@ -6,12 +6,12 @@ block content
     form(class="d-flex", action="/" method="get")
       input(class="form-control me-2", type="search", placeholder="Search digital health tools...", name="search", value=searchQuery)
       button(class="btn btn-outline-success", type="submit") Search
-      ul(class="list-group mt-3")
-        each company in company_list 
+    ul(class="list-group mt-3")
+       each company in company_list 
           li(class="list-group-item d-flex justify-content-between align-items-center")
-            a(href=company.url) #{company.name}
-            |  (#{company.description})
-        
+            span= company.name + ' : ' + company.description
+            a(href=company.url, class="btn btn-primary btn-sm") View
         
         
       
+
