@@ -4,9 +4,17 @@ block content
   .container.mt-4
     .row
       .col-md-8.offset-md-2
-        h1 #{company.name}
-        p.lead #{company.description}
-        hr
+        h1 Are you sure you want to delete #{company.name}?
+        p.lead This action cannot be undone.
+
+        .row.mb-3
+          .col-md-12
+            hr
+
+        .row.mb-3
+          .col-md-12
+            h2 Company Details
+            p.lead #{company.description}
 
         .row.mb-3
           .col-sm
@@ -26,6 +34,6 @@ block content
         img(src=company.imageUrl alt=company.name style="max-width: 100%; height: auto;")
 
         .text-center.mt-4
-          a.btn.btn-primary(href=company.url + "/update") Update Information
-          
-          a.btn.btn-danger(href=company.url + "/delete") Delete Company
+          form(action=company.url + "/delete", method="POST")
+            button.btn.btn-danger(type="submit") Confirm Delete
+          a.btn.btn-secondary(href="/companies") Cancel

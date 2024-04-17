@@ -12,9 +12,8 @@ router.post('/add-tool', digital_health_tool.add_new_tool_post);
 
 router.get('/:id',digital_health_tool.company_instance_id);
 
-router.get('/:id/delete', )
+router.get('/:id/delete', digital_health_tool.company_delete_get);
 
-router.get('/:id/update', digital_health_tool.company_update_get )
-
+router.get('/:id/update', digital_health_tool.company_update_get);
 
 module.exports = router;

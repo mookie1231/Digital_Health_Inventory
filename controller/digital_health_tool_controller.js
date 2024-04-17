@@ -100,3 +100,18 @@ exports.company_update_get = asyncHandler(async (req, res, next) => {
 });
 
 
+exports.company_delete_get = asyncHandler(async (req,res,next) => {
+  const companyinfo = await Company.findById(req.params.id)
+      .exec();
+
+    if (company === null) {
+      const err = new Error("Book not found");
+      err.status = 404;
+      return next(err);
+    }
+
+    res.render("delete", {
+      title: "Delete Company Info",
+      company: companyinfo,
+    })
+})
