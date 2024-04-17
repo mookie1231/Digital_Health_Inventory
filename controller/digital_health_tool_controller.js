@@ -82,4 +82,21 @@ exports.company_instance_id = asyncHandler(async (req,res,next) => {
     });
 })
 
+exports.company_update_get = asyncHandler(async (req, res, next) => {
+  const [company] = await Promise.all([
+    Company.findById(req.params.id).exec(),
+  ]);
+
+  if (company === null) {
+    const err = new Error("Book not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render("company_update", {
+    title: "Update Company Info",
+    company: company,
+  });
+});
+
 

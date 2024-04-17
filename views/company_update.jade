@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div(class="container")
+    h1 Update Digital Health Tool Information
+    form(action="/update-tool/:id" method="post" enctype="multipart/form-data")
+      div(class="mb-3")
+        label(for="name" class="form-label") Name
+        input(type="text" class="form-control" id="name" name="name" value=company.name required)
+        
+      div(class="mb-3")
+        label(for="description" class="form-label") Description
+        textarea(class="form-control" id="description" name="description" rows="3" required)= company.description
+      
+      div(class="mb-3") 
+        // label(for="image" class="form-label") Current Image
+        // img(src=company.imageUrl alt="company.name" style="width: 100px; height: auto;")
+        label(for="image" class="form-label") Change Image
+        input(type="file" class="form-control" id="image" name="image" accept="image/*")
+        
+      div(class="mb-3")
+        label(for="services" class="form-label") Services
+        input(type="text" class="form-control" id="services" name="services" value=company.services required)
+
+      div(class="mb-3")
+        label(for="contact" class="form-label") Contact
+        input(type="text" class="form-control" id="contact" name="contact" value=company.contact required)
+
+      button(type="submit" class="btn btn-primary") Update Information
+
+      p 
